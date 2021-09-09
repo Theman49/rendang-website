@@ -1,0 +1,175 @@
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+
+
+
+
+
+/* utlities =================================================*/
+
+.j-flex-end {
+	justify-content: flex-end;
+}
+
+.testing {
+	height: 500px;
+	background-color: gray;
+}
+
+.space {
+	height: 100px;
+	background-image: linear-gradient(180deg, black, transparent);
+}
+
+nav .active {
+	font-weight: bold;
+}
+
+
+/*====================================================*/
+
+
+
+
+
+
+
+/* BERANDA */
+
+#beranda #banner {
+	height: 100vh;
+	width: 100vw;
+	/*background-image: linear-gradient(45deg, black, transparent);*/
+	animation-name: banner;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+}
+
+#beranda #banner h1 {
+	line-height: 100vh;
+}
+
+@keyframes banner{
+	from {
+		background-color: transparent;
+		color: black;
+	}
+	to {
+		background-color: black;
+		color: white;
+	}
+}
+
+/*====================================================*/
+
+
+
+
+
+
+
+
+
+
+/* CATALOG */
+
+#catalog #content {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 9;
+}
+
+#catalog #content .item {
+	width: 32%;
+	margin-bottom: 20px;
+}
+
+#catalog #content .item .gambar-produk {
+	width: 100%;
+	height: auto;
+	margin-bottom: 10px;
+}
+
+
+#catalog #content .item p,
+#catalog #content .item h5 {
+	margin: 0;
+	padding: 0;
+}
+/*====================================================*/
+
+
+
+
+
+
+
+
+
+/* Detail */
+
+#detail-menu #content .cursor-pointer {
+	cursor: pointer;
+}
+
+#detail-menu #content .order div {
+	display: inline-block;
+}
+
+#detail-menu #deskripsi {
+	padding: 20px 0;
+}
+
+#detail-menu #produk-lainnya > div{
+	display: flex;
+	justify-content: space-between;
+}
+
+#detail-menu #produk-lainnya .item {
+	width: 18%;
+	margin-bottom: 20px;
+}
+
+#detail-menu #produk-lainnya .item .gambar-produk {
+	width: 100%;
+	height: auto;
+	margin-bottom: 10px;
+}
+
+/*====================================================*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*FOOTER*/
+footer {
+	/*background-image: linear-gradient(red, grey);*/
+}
+
+footer .j-between {
+	display: flex;
+	justify-content: space-between;
+}

@@ -1,0 +1,80 @@
+
+#navbar-admin .active a.nav-link{
+	color: #000;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* TAMBAH MENU */
+
+#admin {
+	padding-top: 50px;
+}
+
+
+#admin #content {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 9;
+}
+
+#admin #content .item {
+	width: 32%;
+	margin-bottom: 20px;
+}
+
+#admin #content .item .gambar-produk {
+	width: 100%;
+	height: auto;
+	margin-bottom: 10px;
+}
+
+
+#admin #content .item p,
+#admin #content .item h5 {
+	margin: 0;
+	padding: 0;
+}
+
+#admin #content .item .tombol-kelola {
+	margin-top: 10px;
+}
+/*=========================================*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* TAMBAH KATEGORI */
+#admin-kategori {
+	padding-top: 50px;
+}
+
+
+/*=========================================*/
