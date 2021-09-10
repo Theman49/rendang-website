@@ -14,8 +14,12 @@ a {
 
 
 /* utlities =================================================*/
+.text-right {
+	text-align: right;
+}
 
 .j-flex-end {
+	display: flex;
 	justify-content: flex-end;
 }
 
@@ -29,9 +33,6 @@ a {
 	background-image: linear-gradient(180deg, black, transparent);
 }
 
-nav .active {
-	font-weight: bold;
-}
 
 
 /*====================================================*/
@@ -40,32 +41,62 @@ nav .active {
 
 
 
+/* navbar */
+nav .container-fluid{
+	padding: 0;
+}
+
+nav .active {
+	font-weight: bold;
+}
+/*===================================================*/
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* BERANDA */
-
 #beranda #banner {
 	height: 100vh;
-	width: 100vw;
-	/*background-image: linear-gradient(45deg, black, transparent);*/
-	animation-name: banner;
-	animation-duration: 3s;
-	animation-iteration-count: infinite;
+	width: 100%;
+	background-image: url('http://localhost/rendang/assets/image/rendang.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+#beranda #banner > div {
+	padding: 0;
 }
 
 #beranda #banner h1 {
 	line-height: 100vh;
+	animation-name: banner;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
 }
 
 @keyframes banner{
-	from {
-		background-color: transparent;
-		color: black;
+	0% {
+		background-color: rgba(0,0,0,0);
+		color: transparent;
 	}
-	to {
-		background-color: black;
+	50%{
+		background-color: rgba(0,0,0,0.8);;
 		color: white;
 	}
+	100% {
+		background-color: rgba(0,0,0,0);
+		color: transparent;
+	}
+
 }
 
 /*====================================================*/
@@ -145,16 +176,63 @@ nav .active {
 	margin-bottom: 10px;
 }
 
+
 /*====================================================*/
 
 
 
 
 
+/* PATH */
+#path a {
+	color: #776f6f;
+	font-size: 0.9rem;
+}
+/*===================================================*/
 
 
 
 
+
+
+
+
+
+
+/* CART */
+#cart i:hover {
+	cursor: pointer;
+}
+
+#cart .order div {
+	display: inline-block;
+}
+
+#cart .menu-pesan button {
+	height: 100%;
+}
+
+#cart .menu-pesan #hargaBayar {
+
+}
+/*===================================================*/
+
+
+
+
+
+
+
+
+
+/* CHECKOUT */
+
+#checkout > .row > .col {
+	height: 100vh;
+}
+
+
+/*===================================================*/
 
 
 

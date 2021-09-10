@@ -11,10 +11,13 @@
 			<?php
 				for($i=0; $i < 9; $i++){
 					?>
-						<div class="item">
+						<div class="item card">
 							<img src="<?=base_url('assets/image/rendang.jpg')?>" class="gambar-produk">
-							<p>Rp. 40.000,- </p>
-							<a href="<?=site_url('catalog/detail/'.$i.'')?>"><h5 onclick="detail()">Rendang Original</h5></a>
+							<div class="card-body">
+								<p>Rp. 40.000,- </p>
+								<a href="<?=site_url('catalog/detail/'.$i.'')?>"><h5 onclick="detail()">Rendang Original</h5></a>
+							</div>
+							
 						</div>
 					<?php
 				}

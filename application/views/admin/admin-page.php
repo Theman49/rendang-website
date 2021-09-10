@@ -29,7 +29,7 @@
 				</div>
 				<div class="mb-3">
 				  <label for="exampleFormControlInput2" class="form-label">Deskripsi</label>
-				  <textarea class="form-control"></textarea>
+				  <textarea class="form-control" name="deskripsi"></textarea>
 				</div>
 				<div class="mb-3">
 				  <label for="formFile" class="form-label">Gambar Utama</label>
@@ -48,12 +48,16 @@
 			<?php
 				for($i=0; $i < 9; $i++){
 					?>
-						<div class="item">
+						<div class="item card">
 							<img src="<?=base_url('assets/image/rendang.jpg')?>" class="gambar-produk">
-							<p>Rp. 40.000,- </p>
-							<h5>Rendang Original</h5>
+							
+							<div class="card-body">
+								<p>Rp. 40.000,- </p>
+								<h5>Rendang Original</h5>
+							</div>
+							
 
-							<div class="row tombol-kelola">
+							<div class="row tombol-kelola card-body">
 								<div class="col">
 									<button class="btn btn-warning w-100">Edit</button>
 								</div>

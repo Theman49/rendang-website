@@ -1,14 +1,31 @@
 <div id="detail-menu" class="container">
 	<div class="row">
-		<div id="gambar-produk" class="col">
-			<img src="<?=base_url('assets/image/rendang.jpg')?>">
+		<div id="gambar-tambahan" class="col col-lg-2">
+			<?php
+				for($i=0; $i<2; $i++){
+					if($i==1){
+						$source = base_url()."assets/image/rendang_2.jpg";
+					}else{
+						$source = base_url()."assets/image/rendang.jpg";
+					}
+					?>
+					<div id="gambarTambahan<?=$i?>" class="row mb-3" onmouseover="showImageHover(<?=$i?>)">
+						<img src="<?=$source?>">
+					</div>
+					<?php
+				}
+			?>
+			
 		</div>
-		<div id="content" class="col">
+		<div id="gambar-produk" class="col col-lg-6">
+			<img class="w-100" src="<?=base_url('assets/image/rendang.jpg')?>">
+		</div>
+		<div id="content" class="col col-lg-4">
 			<div class="row">
-				<h5>Rendang Original</h5>
-				<h6>Rp. 40.000,-</h6>
+				<h3>Rendang Original</h3>
+				<h4 class="my-3">Rp. 40.000,-</h4>
 			</div>
-			<div class="order">
+			<div class="order my-4">
 				<div class=" cursor-pointer">
 					<i class="fa fa-minus btn btn-secondary" onclick="kurangOrder()"></i>
 				</div>
@@ -20,7 +37,7 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col col-lg-5">
+				<div class="col col-lg-5 pe-0">
 					<button class="btn btn-primary w-100">Beli Sekarang</button>
 				</div>
 				<div class="col col-lg-7">

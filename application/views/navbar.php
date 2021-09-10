@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mb-4">
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Rendang</a>
@@ -22,7 +22,7 @@
                 <a class="nav-link" href="#"><i class="fa fa-search"></i></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href=""><i class="fa fa-shopping-cart"></i></a>
+                <a class="nav-link" href="<?=site_url('cart')?>"><i class="fa fa-shopping-cart"></i></a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fa fa-user"></i></a>

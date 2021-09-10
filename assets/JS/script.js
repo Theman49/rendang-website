@@ -8,6 +8,31 @@
 // 	banner.style.backgroundImage = string;
 // 	console.log(deg)
 // })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Function pada page detail menu
+
+
 let jumlahOrder = document.getElementById("jumlahOrder");
 let value = parseInt(jumlahOrder.innerHTML);
 function tambahOrder(){
@@ -21,4 +46,104 @@ function kurangOrder(){
 		jumlahOrder.innerHTML = value;
 	}
 	
+}
+
+
+function showImageHover(id){
+	const gambarUtama = document.getElementById("gambar-produk");
+	if(id==0){
+		str = `<img class="w-100" src="http://localhost/rendang/assets/image/rendang.jpg"/>`;
+	}else{
+		str = `<img class="w-100" src="http://localhost/rendang/assets/image/rendang_${id+1}.jpg"/>`;
+	}
+	
+	gambarUtama.innerHTML = str;
+	console.log(str)
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Function pada page cart
+function firstLoad(){
+	const pesanan = document.getElementsByClassName('menu-pesan');
+	const jumlahMenu = pesanan.length;
+	hargaBayar(jumlahMenu);
+}
+
+
+function menghitungHarga(id, value){
+	const getIdHarga = "hargaMenu" + id;
+	let harga = document.getElementById(getIdHarga);
+	const getSubTotal = "subTotal" + id;
+	let subTotal = document.getElementById(getSubTotal)
+	let parseHarga = parseFloat(harga.innerHTML);
+	let totalHarga = parseHarga * value;
+	subTotal.innerHTML = totalHarga;
+}
+
+function tambahOrderOnCart(id){
+	const getIdOrder = "jumlahOrder" + id;
+	let jumlahOrder = document.getElementById(getIdOrder);
+	let value = parseInt(jumlahOrder.innerHTML);
+	value++;
+	jumlahOrder.innerHTML = value;
+
+	menghitungHarga(id, value);
+
+	hargaBayar();
+}
+
+function kurangOrderOnCart(id){
+	const getIdOrder = "jumlahOrder" + id;
+	let jumlahOrder = document.getElementById(getIdOrder);
+	let value = parseInt(jumlahOrder.innerHTML);
+	if(value > 1){
+		value--;
+		jumlahOrder.innerHTML = value;
+	}
+
+
+
+	menghitungHarga(id, value);
+
+	hargaBayar();
+}
+
+function hargaBayar() {
+	const bayar = document.getElementById("hargaBayar");
+	const pesanan = document.getElementsByClassName('menu-pesan');
+	const jumlahMenu = pesanan.length;
+	let hargaBayar = 0;
+	let subTotal = document.getElementsByClassName('subTotal');
+	for(let i=0; i<jumlahMenu; i++){
+		
+		let parseHarga = parseFloat(subTotal[i].innerHTML);
+		hargaBayar+=parseHarga;
+	}
+	bayar.innerHTML = hargaBayar;
+}
+
+
+function cancelPesanan(id){
+	const getId = "idMenuPesan" + id;
+	const pesanan = document.getElementById(getId);
+	pesanan.remove();
+
+	hargaBayar();
 }
