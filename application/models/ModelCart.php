@@ -13,6 +13,11 @@
             $update = $this->db->query($sql);
             return $update;
         }
+        public function hapusDariCart($id_menu){
+            $sql = "DELETE FROM cart WHERE id_menu = $id_menu";
+            $delete = $this->db->query($sql);
+            return $delete;
+        }
 
 	}
 ?>

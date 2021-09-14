@@ -24,7 +24,8 @@
 									<p>Rp. <span id="hargaMenu<?=$i?>"><?=substr($row['harga'], 0)?></span>,-</p>
 								</div>
 								<div class="col">
-									<p class="btn btn-danger" onclick="hapusDariCart(<?=$i?>)"><i class="fa fa-times "></i></p>
+									<?php $hapus = "cart/hapusDariCart/".$row['id_menu']?>
+									<a href="<?=site_url($hapus)?>"><p class="btn btn-danger" onclick="hapusDariCart(<?=$i?>)"><i class="fa fa-times "></i></p></a>
 								</div>
 							</div>
 						</div>
@@ -33,10 +34,12 @@
 							<div class="row text-right ">
 								<div class="col col-lg-8 order">
 									<form action="<?=site_url('cart/updateCart')?>" method="POST">
-
-										<input class="" id="inputOrder<?=$i?>" type="number" name="jumlahOrder" value="<?=$row['jumlah_order']?>">
-										<input class="" id="id_menu<?=$i?>" type="number" name="idMenu" value="<?=$row['id_menu']?>">
-										<input class="" id="totalHarga<?=$i?>" type="number" name="totalHarga" value="<?=$row['total_harga']?>">
+										<div class="d-none">
+											<input class="" id="inputOrder<?=$i?>" type="number" name="jumlahOrder" value="<?=$row['jumlah_order']?>">
+											<input class="" id="id_menu<?=$i?>" type="number" name="idMenu" value="<?=$row['id_menu']?>">
+											<input class="" id="totalHarga<?=$i?>" type="number" name="totalHarga" value="<?=$row['total_harga']?>">
+										</div>
+										
 
 										<div class=" cursor-pointer">
 											<button class="btn btn-secondary" type="submit" name="updateCart" onclick="kurangOrderOnCart(<?=$i?>)"><i class="fa fa-minus"></i></button>
@@ -63,7 +66,7 @@
 				$totalHarga += intval($row['total_harga']);
 			}
 		?>
-		<input class="" id="jumlahMenuDipesan" type="number" name="jumlahMenuDipesan" value="<?=$i?>">
+		<!-- <input class="" id="jumlahMenuDipesan" type="number" name="jumlahMenuDipesan" value="<?=$i?>"> -->
 		<div class="row mb-3">
 			<div class="col text-right">
 				<h1>Rp. <span id="hargaBayar"><?=$totalHarga?></span>,-</h1>
@@ -72,7 +75,6 @@
 		<div class="row">
 			<div class="col col-lg-9"></div>
 			<div class="col col-lg-3">
-				<a href="<?=site_url('test')?>"><button class="btn btn-primary w-100">Checkout</button></a>
 				<a href="<?=site_url('checkout')?>"><button class="btn btn-primary w-100">Checkout</button></a>
 			</div>
 		</div>

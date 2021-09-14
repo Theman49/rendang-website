@@ -27,4 +27,13 @@ class Cart extends MY_Controller {
 		}
 	}
 	
+	public function hapusDariCart($id_menu){
+		$hapus = $this->ModelCart->hapusDariCart($id_menu);
+		if($hapus){
+			echo $hapus." sukses";
+			redirect('cart');
+		}else{
+			echo "Gagal";
+		}
+	}
 }

@@ -232,6 +232,31 @@ nav .active {
 }
 
 
+#checkout #formData pre {
+	margin-bottom: 0;
+}
+
+#checkout #accordionExample .logo-pengiriman {
+	width: 100px;
+}
+
+#checkout #accordionExample .logo-pengiriman,
+#checkout #pembayaran img {
+	width: 100px;
+}
+#checkout #accordionExample strong {
+	font-style: italic;
+}
+
+#checkout #accordionExample label,
+#checkout #pembayaran label {
+	margin-left: 10px;
+}
+
+#checkout .tarif p,
+#checkout #pembayaran p {
+	margin: 0;
+}
 /*===================================================*/
 
 

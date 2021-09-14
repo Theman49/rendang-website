@@ -37,21 +37,53 @@ class Catalog extends MY_Controller {
 	public function addToCart(){
 		// echo $_POST['jumlahOrder'];
 		// echo $this->session->userdata('id_session');
-		$idMenu = $_POST['idMenu'];
+		$id_session = $this->session->userdata('id_session');
+		$id_menu = $_POST['idMenu'];
+		$jumlah_order = $_POST['jumlahOrder'];
 		$totalHarga = $_POST['totalHarga'];
 
 		$data = array(
 			
-			'id_session' => $this->session->userdata('id_session'),
-			'id_menu' => $idMenu,
-			'jumlah_order' => $_POST['jumlahOrder'],
+			'id_session' => $id_session,
+			'id_menu' => $id_menu,
+			'jumlah_order' => $jumlah_order,
 			'total_harga' => $totalHarga
 		);
+
+		$sql = "SELECT * FROM cart WHERE id_session = '". $id_session . "' AND id_menu = " . $id_menu .";";
+		$select = $this->ModelCatalog->getDataFromQuery($sql);
+		if(count($select) != 0){
+			echo $select[0]['id_session'];
+			$this->update($data);
+		}else{
+			echo "0";
+			$this->insert($data);
+		}
 		
 
+		// $insert = $this->db->insert('cart', $data);
+		// if($insert){
+		// 	$script = "<script>alert('Success');window.location.href = \"catalog/detail/".$idMenu."\"</script>";
+		// 	echo $script;
+		// }else{
+		// 	echo "gagal";
+		// }
+	}
+
+	public function insert($data){
 		$insert = $this->db->insert('cart', $data);
 		if($insert){
-			$script = "<script>alert('Success');window.location.href = \"catalog/detail/".$idMenu."\"</script>";
+			$script = "<script>alert('Success');window.location.href = \"catalog/detail/".$data['id_menu']."\"</script>";
+			echo $script;
+		}else{
+			echo "gagal";
+		}
+	}
+
+	public function update($data){
+		$update = $this->ModelCart->updateCart($data['id_session'], $data['id_menu'], $data['jumlah_order'], $data['total_harga']);
+		if($update){
+			$script = "<script>alert('Success');window.location.href = \"catalog/detail/".$data['id_menu']."\"</script>";
 			echo $script;
 		}else{
 			echo "gagal";
