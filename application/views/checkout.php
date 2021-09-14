@@ -39,8 +39,9 @@
 		</div>
 		<div class="col py-5">
 				<?php
-					$totalItem = 0;
-					for($i=0; $i<2; $i++){
+					$totalHarga = 0;
+					$i=0;
+					foreach($contentData as $row){
 						?>
 							<div id="idMenuPesan<?=$i?>" class="row mb-3 mx-1 menu-pesan"> 
 								<div class="col item">
@@ -49,8 +50,8 @@
 											<img class="w-100" src="<?=base_url('assets/image/rendang.jpg')?>">
 										</div>
 										<div class="col">
-											<h5>Rendang Ori</h5>
-											<p>Rp. <span id="hargaMenu<?=$i?>">40</span>.000,-</p>
+											<h5><?=$row['nama_menu']?></h5>
+											<p>Rp. <span id="hargaMenu<?=$i?>"><?=$row['total_harga']?></span>,-</p>
 										</div>
 									</div>
 								</div>
@@ -58,13 +59,14 @@
 								<div class="col item mt-4">
 									<div class="row text-right ">
 										<div class="col order">
-											<p>quanity : 2</p>
+											<p>quanity : <?=$row['jumlah_order']?></p>
 										</div>
 									</div>
 								</div>
 							</div>
 						<?php
-						$totalItem++;
+						$i++;
+						$totalHarga += $row['total_harga'];
 					}
 				?>
 				<div class=" py-3 border-top mx-1 d-flex justify-content-between">
@@ -72,9 +74,18 @@
 						<h5>Total</h5>
 					</div>
 					<div class="">
-						<h5>Rp. <span>80</span>.000,-</h5>
+						<h5>Rp. <span><?=$totalHarga?></span>,-</h5>
 					</div>
 				</div>
 		</div>
 	</div>
 </div>
+
+
+
+
+<!-- 
+BCA
+7115108611
+Martha Melank 
+-->

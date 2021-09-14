@@ -9,13 +9,13 @@
 		</div>
 		<div id="content" class="col col-lg-9">
 			<?php
-				for($i=0; $i < 9; $i++){
+				foreach($contentData as $row){
 					?>
 						<div class="item card">
 							<img src="<?=base_url('assets/image/rendang.jpg')?>" class="gambar-produk">
 							<div class="card-body">
-								<p>Rp. 40.000,- </p>
-								<a href="<?=site_url('catalog/detail/'.$i.'')?>"><h5 onclick="detail()">Rendang Original</h5></a>
+								<p>Rp. <?=$row['harga']?>,- </p>
+								<a href="<?=site_url('catalog/detail/'.$row['id_menu'].'')?>"><h5 onclick="detail()"><?=$row['nama_menu']?></h5></a>
 							</div>
 							
 						</div>

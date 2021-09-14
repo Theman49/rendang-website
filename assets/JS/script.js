@@ -38,6 +38,8 @@ let value = parseInt(jumlahOrder.innerHTML);
 function tambahOrder(){
 	value++;
 	jumlahOrder.innerHTML = value;
+
+	change();
 }
 
 function kurangOrder(){
@@ -45,7 +47,7 @@ function kurangOrder(){
 		value--;
 		jumlahOrder.innerHTML = value;
 	}
-	
+	change();
 }
 
 
@@ -107,6 +109,7 @@ function tambahOrderOnCart(id){
 	menghitungHarga(id, value);
 
 	hargaBayar();
+	change2(id);
 }
 
 function kurangOrderOnCart(id){
@@ -123,6 +126,7 @@ function kurangOrderOnCart(id){
 	menghitungHarga(id, value);
 
 	hargaBayar();
+	change2(id);
 }
 
 function hargaBayar() {
@@ -140,10 +144,12 @@ function hargaBayar() {
 }
 
 
-function cancelPesanan(id){
+function hapusDariCart(id){
 	const getId = "idMenuPesan" + id;
+	const jumlahMenuDipesan = document.getElementById('jumlahMenuDipesan');
 	const pesanan = document.getElementById(getId);
 	pesanan.remove();
 
 	hargaBayar();
+	jumlahMenuDipesan.value--;
 }

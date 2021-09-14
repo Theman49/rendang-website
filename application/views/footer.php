@@ -30,9 +30,9 @@
 	            <div id="sosmed">
 	            	<h5>Social Media</h5>
 	                <a href=""><i class="fa fa-facebook"></i></a>
-	                <a href=""><i class="fab fa-instagram"></i></a>
+	                <a href="https://instagram.com/blessingkitch3n?utm_medium=copy_link"><i class="fab fa-instagram"></i></a>
 	                <a href=""><i class="fab fa-twitter"></i></a>
-	                <a href=""><i class="fab fa-whatsapp"></i></a>
+	                <a href="https://wa.me/6287894441306?text=Hallo%20admin%20saya%20mau%20order.."><i class="fab fa-whatsapp"></i></a>
 	            </div>
         	</div>
            

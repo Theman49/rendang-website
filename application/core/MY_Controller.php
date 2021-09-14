@@ -6,11 +6,13 @@ class MY_Controller extends CI_Controller {
        parent::__construct();
     }
 
-    public function template($title,$content){
+    public function template($title, $content, $contentData = '', $controller = ''){
       $data['title'] = $title;
+      $data['contentData'] = $contentData;
+      $data['controller'] = $controller;
       $this->load->view('head', $data);
       $this->load->view('navbar');
-      $this->load->view($content);
+      $this->load->view($content, $data);
       $this->load->view('footer');
    }
 }

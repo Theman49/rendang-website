@@ -52,5 +52,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'beranda';
 $route['home'] = 'beranda';
 $route['catalog'] = 'catalog';
+$route['addToCart'] = 'catalog/addToCart';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

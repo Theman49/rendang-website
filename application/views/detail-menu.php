@@ -22,57 +22,52 @@
 		</div>
 		<div id="content" class="col col-lg-4">
 			<div class="row">
-				<h3>Rendang Original</h3>
-				<h4 class="my-3">Rp. 40.000,-</h4>
+				<h3><?=$dataDetail['nama_menu']?></h3>
+				<h4 class="my-3">Rp. <span id="dataDetailHarga"><?=$dataDetail['harga']?></span>,-</h4>
 			</div>
-			<div class="order my-4">
-				<div class=" cursor-pointer">
-					<i class="fa fa-minus btn btn-secondary" onclick="kurangOrder()"></i>
+			<form action="<?=site_url("addToCart")?>" method="POST">
+				<div class="order my-4">
+
+					<div class=" cursor-pointer">
+						<i class="fa fa-minus btn btn-secondary" onclick="kurangOrder()" onchange="change()"></i>
+					</div>
+					<div class="">
+						<p id="jumlahOrder" class="px-4">1</p>
+
+						<input class="d-none" id="inputOrder" type="number" name="jumlahOrder" value="1">
+						<input class="d-none" id="id_menu" type="text" name="idMenu" value="<?=$dataDetail['id_menu']?>">
+						<input class="d-none" id="totalHarga" type="text" name="totalHarga" value="<?=$dataDetail['harga']?>">
+						
+					</div>
+					<div class=" cursor-pointer">
+						<i class="fa fa-plus btn btn-secondary" onclick="tambahOrder()" onchange="change()"></i>
+					</div>
 				</div>
-				<div class="">
-					<p id="jumlahOrder" class="px-4">1</p>
+				<div class="row">
+					<div class="col col-lg-5 pe-0">
+						<a href="#" class="btn btn-primary w-100">Beli Sekarang</a>
+					</div>
+					<div class="col col-lg-7">
+						<button type="submit" class="btn btn-success w-100">Tambah Ke Keranjang</button>
+					</div>
 				</div>
-				<div class=" cursor-pointer">
-					<i class="fa fa-plus btn btn-secondary" onclick="tambahOrder()"></i>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col col-lg-5 pe-0">
-					<button class="btn btn-primary w-100">Beli Sekarang</button>
-				</div>
-				<div class="col col-lg-7">
-					<button class="btn btn-success w-100">Tambah Ke Keranjang</button>
-				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 	<div id="deskripsi" class="row">
-		<pre>Kripik Sanjai Balado Bulat merupakan olahan singkong yang dipotong menyerupai bulatan dan diberi saus khas minang 
-			yang rasa dan tekstur nya renyah pedas manis, orang2 minang menyebutnya dengan "Sanjai Balado Merah"
-Spesial untuk kamu dari Unikayo, "Kripik Sanjai Balado Bulat"
-Tekstur Sanjai Balado yang renyah bikin nyantaimu makin seru 
-
-cocok dimakan ketika :
-- cemilan nonton film 
-- cemilan kerja 
-- cemilan belajar
-- cemilan nongkrong bareng temen
-dll 
-
-Ketahahan : 
-- Suhu ruang : 3 bulan</pre>
+		<?=$dataDetail['deskripsi']?>
 	</div>
 
 	<div id="produk-lainnya">
-		<h1>Produk Lainnya</h1>
-		<div class="row">
+		<h1>Menu Lainnya</h1>
+		<div class="d-flex justify-content-between">
 			<?php
-				for($i=0; $i < 5; $i++){
+				foreach($dataMenuLain as $row){
 					?>
 						<div class="item card shadow p-3 mb-5 bg-body rounded">
 							<img src="<?=base_url('assets/image/rendang.jpg')?>" class="gambar-produk">
-							<p>Rp. 40.000,- </p>
-							<a href="<?=site_url('catalog/detail/'.$i.'')?>"><h5 onclick="detail()">Rendang Original</h5></a>
+							<p>Rp. <?=$row['harga']?>,- </p>
+							<a href="<?=site_url('catalog/detail/'.$row['id_menu'].'')?>"><h5 onclick="detail()"><?=$row['nama_menu']?></h5></a>
 						</div>
 					<?php
 				}
@@ -80,3 +75,23 @@ Ketahahan :
 		</div>
 	</div>
 </div>
+
+<script>
+	
+
+	function change(){
+		let dataDetailHarga = document.getElementById('dataDetailHarga');
+		let harga = parseInt(dataDetailHarga.innerHTML);
+
+		let inputOrder = document.getElementById("inputOrder");
+		let jumlahOrder = document.getElementById("jumlahOrder");
+		let totalHarga = document.getElementById('totalHarga');
+
+
+		let valueJumlahOrder = parseInt(jumlahOrder.innerHTML);
+
+		inputOrder.value = valueJumlahOrder;
+
+		totalHarga.value = valueJumlahOrder * harga;
+	}
+</script>
