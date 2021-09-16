@@ -1,3 +1,8 @@
+<script type="text/javascript"
+            src="https://app.sandbox.midtrans.com/snap/snap.js"
+            data-client-key="SB-Mid-client-uweS1oz-UmY6U1hK"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
 <div id="checkout" class="container">
 	<div class="row">
 		<div class="col col-lg-7 border-end py-5 pe-5">
@@ -6,36 +11,44 @@
 			</div>
 			<?php $this->load->view('path-checkout')?>
 			<!-- form -->
-			<form action="<?=site_url('checkout/form')?>" method="POST" class="<?=($formData == "") ? "" : "d-none"?>">
+			<form id="payment-form" action="<?=site_url('snap/finish')?>" method="POST" class="<?=($formData == "") ? "" : "d-none"?>">
+				<input type="hidden" name="result_type" id="result-type" value="">
+     	  <input type="hidden" name="result_data" id="result-data" value="">
+
+
 				<h3>Alamat Pengiriman</h3>
 				<div class="mb-3">
 				  <label for="exampleFormControlInput1" class="form-label">Nama Pembeli : </label>
-				  <input type="text" class="form-control" placeholder="Chris Manuel" name="nama_pembeli" value="<?=(isset($_SESSION['formData'])) ? $_SESSION['formData']['nama_pembeli'] : ""?>">
+				  <input id="namaPembeli" required type="text" class="form-control" placeholder="Chris Manuel" name="nama_pembeli" value="<?=(isset($_SESSION['formData'])) ? $_SESSION['formData']['nama_pembeli'] : ""?>">
+				</div>
+				<div class="mb-3">
+				  <label for="exampleFormControlInput1" class="form-label">Email : </label>
+				  <input id="emailPembeli" required type="email" class="form-control" placeholder="example@gmail.com" name="email_pembeli" value="<?=(isset($_SESSION['formData'])) ? $_SESSION['formData']['email_pembeli'] : ""?>">
 				</div>
 				<div class="mb-3">
 				  <label for="exampleFormControlInput1" class="form-label">Kota/Kabupaten : </label>
-				  <input type="text" class="form-control" placeholder="DKI JAKARTA" name="kota_pembeli" value="<?=(isset($_SESSION['formData'])) ? $_SESSION['formData']['kota_pembeli'] : ""?>">
+				  <input id="kotaPembeli" required type="text" class="form-control" placeholder="DKI JAKARTA" name="kota_pembeli" value="<?=(isset($_SESSION['formData'])) ? $_SESSION['formData']['kota_pembeli'] : ""?>">
 				</div>
 				<div class="mb-3">
 				  <label for="exampleFormControlInput1" class="form-label">Alamat : </label>
-				  <textarea class="form-control" placeholder="JL. Mangga Gg. 2" name="alamat_pembeli"><?=(isset($_SESSION['formData'])) ? $_SESSION['formData']['alamat_pembeli'] : ""?></textarea>
+				  <textarea id="alamatPembeli" required class="form-control" placeholder="JL. Mangga Gg. 2" name="alamat_pembeli"><?=(isset($_SESSION['formData'])) ? $_SESSION['formData']['alamat_pembeli'] : ""?></textarea>
 				</div>
 				<div class="row">
 					<div class="col mb-3">
 					  <label for="exampleFormControlInput1" class="form-label">Kode Pos : </label>
-					  <input type="text" class="form-control" placeholder="12345" name="kode_pos" value="<?=(isset($_SESSION['formData'])) ? $_SESSION['formData']['kode_pos'] : ""?>">
+					  <input id="kodePos" required type="text" class="form-control" placeholder="12345" name="kode_pos" value="<?=(isset($_SESSION['formData'])) ? $_SESSION['formData']['kode_pos'] : ""?>">
 					</div>
 					<div class="col mb-3">
 					  <label for="exampleFormControlInput1" class="form-label">Telepon : </label>
-					  <input type="text" class="form-control" placeholder="0812345678" name="telepon" value="<?=(isset($_SESSION['formData'])) ? $_SESSION['formData']['telepon'] : ""?>">
+					  <input id="telepon" required type="text" class="form-control" placeholder="0812345678" name="telepon" value="<?=(isset($_SESSION['formData'])) ? $_SESSION['formData']['telepon'] : ""?>">
 					</div>
 				</div>
-				<div class="d-flex justify-content-end">
-					<button class="btn btn-primary">Lanjutkan</button>
-				</div>
+			
 				
 			</form>
-			
+				<div class="d-flex justify-content-end">
+					<button class="btn btn-primary" id="pay-button">Lanjutkan</button>
+				</div>
 			<!-- metode pengiriman -->
 
 			<?php 
@@ -62,6 +75,7 @@
 		</div>
 		<div class="col col-lg-5 py-5">
 				<?php
+					$item = [];
 					$totalHarga = 0;
 					$i=0;
 					foreach($contentData as $row){
@@ -90,6 +104,7 @@
 						<?php
 						$i++;
 						$totalHarga += $row['total_harga'];
+						array_push($item, $row['nama_menu']);
 					}
 				?>
 
@@ -141,17 +156,114 @@
 							}
 						?>
 						<h5>Rp. <span id="totalHarga"><?=$totalHarga?></span>,-</h5>
+						<input class="d-none" type="number" name="totalHarga" id="total" value="<?=$totalHarga?>">
 					</div>
 				</div>
 		</div>
 	</div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+
+<script type="text/javascript">
+  
+    $('#pay-button').click(function (event) {
+      event.preventDefault();
+      $(this).attr("enabled", "enabled");
+
+
+      var namaPembeli = $('#namaPembeli').val();
+      var kotaPembeli = $('#kotaPembeli').val();
+      var alamatPembeli = $('#alamatPembeli').val();
+      var kodePos = $('#kodePos').val();
+      var telepon = $('#telepon').val();
+      var totalHarga = $('#total').val();
+      var emailPembeli = $('#emailPembeli').val();
+    
+    	if(namaPembeli == "" || kotaPembeli == "" || alamatPembeli == "" || kodePos == "" || telepon == "" || emailPembeli == "") {
+    		alert("Mohon lengkapi formnya ya kak :)");
+    	}
+
+    $.ajax({
+      type: "POST",
+      data: {
+        nama: namaPembeli,
+        email: emailPembeli,
+        kota: kotaPembeli,
+        alamat: alamatPembeli,
+        kodePos: kodePos,
+        telepon: telepon,
+        totalHarga: totalHarga,
+        namaMenu: [<?php 
+        	foreach($contentData as $row){
+        		echo "\"".$row['nama_menu']."\",";
+        	}
+        ?>],
+        quantities: [<?php 
+        	foreach($contentData as $row){
+        		echo $row['jumlah_order'].",";
+        	}
+		?>],
+		hargaMenu: [<?php 
+
+        	foreach($menu as $row){
+        		echo $row['harga'].",";
+        	}
+		?>],
+      },
+      url: '<?=site_url("snap/token")?>',
+      cache: false,
+
+      success: function(data) {
+        //location = data;
+
+        console.log('token = '+data);
+        
+        var resultType = document.getElementById('result-type');
+        var resultData = document.getElementById('result-data');
+
+        function changeResult(type,data){
+          $("#result-type").val(type);
+          $("#result-data").val(JSON.stringify(data));
+          //resultType.innerHTML = type;
+          //resultData.innerHTML = JSON.stringify(data);
+        }
+
+        snap.pay(data, {
+          
+          onSuccess: function(result){
+            changeResult('success', result);
+            console.log(result.status_message);
+            console.log(result);
+            $("#payment-form").submit();
+          },
+          onPending: function(result){
+            changeResult('pending', result);
+            console.log(result.status_message);
+            $("#payment-form").submit();
+          },
+          onError: function(result){
+            changeResult('error', result);
+            console.log(result.status_message);
+            $("#payment-form").submit();
+          }
+        });
+      }
+    });
+  });
+
+  </script>
+
+
+
+
+
+
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
 <script src="<?=base_url('assets/JS/script-checkout.js')?>"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script> -->
 
 
 <!-- 

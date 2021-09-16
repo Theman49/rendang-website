@@ -6,6 +6,14 @@ class Checkout extends MY_Controller {
 	{
 		$id_session = $this->session->userdata('id_session');
 		$dataCart['contentData'] = $this->ModelCart->getFromCart();
+		$temp= [];
+		$orderMenu = $this->ModelCart->getFromCart();
+		foreach($orderMenu as $row){
+			$sql = "SELECT * FROM catalog WHERE id_menu = '". $row['id_menu']."'";
+        		$menu = $this->ModelCatalog->getDataFromQuery($sql);
+        		array_push($temp, $menu[0]);
+        	}
+        $dataCart['menu'] = $temp;
 		$dataCart['formData'] = "";
 
 		$title = "Checkout | Rendangku";

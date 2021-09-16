@@ -25,7 +25,7 @@
                 <a class="nav-link" href="<?=site_url('cart')?>"><i class="fa fa-shopping-cart"></i></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fa fa-user"></i></a>
+                <a class="nav-link" href="<?=site_url('transaction')?>"><i class="fa fa-user"></i></a>
               </li>
             </ul>
       </div>
