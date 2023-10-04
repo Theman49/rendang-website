@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
     <link rel="stylesheet" type="text/css" href="<?=base_url('assets/CSS/style.css')?>">
+    <link rel="stylesheet" type="text/css" href="<?=base_url('assets/CSS/style-mobile.css')?>">
     <link rel="stylesheet" type="text/css" href="<?=base_url('assets/CSS/style-admin.css')?>">
 
 	<title><?=$title?></title>
 </head>
-<body>
+<body class="bg-dark text-light">

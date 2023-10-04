@@ -51,12 +51,13 @@ function kurangOrder(){
 }
 
 
-function showImageHover(id){
+function showImageHover(id, source){
+
 	const gambarUtama = document.getElementById("gambar-produk");
 	if(id==0){
-		str = `<img class="w-100" src="http://localhost/rendang/assets/image/rendang.jpg"/>`;
+		str = `<img class="w-100" src="${source}.jpg"/>`;
 	}else{
-		str = `<img class="w-100" src="http://localhost/rendang/assets/image/rendang_${id+1}.jpg"/>`;
+		str = `<img class="w-100" src="${source}-2.jpg"/>`;
 	}
 	
 	gambarUtama.innerHTML = str;

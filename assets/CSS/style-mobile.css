@@ -1,0 +1,87 @@
+@media only screen and (max-width: 450px){
+    html {
+        font-size: 50%;
+    }
+}
+
+@media only screen and (max-width: 600px){
+    html {
+        font-size: 62.5%;
+    }
+    /* CATALOG */
+
+    #catalog #content {
+        padding: 1.5rem;
+    }
+
+    #catalog #content .item {
+        width: 100%;
+        margin-bottom: 10%;
+    }
+
+    #catalog #content .item:not(:nth-child(even)) {
+        margin-right: 0%;
+    }
+
+    /*====================================================*/
+
+
+
+
+
+
+    /* CART */
+    #cart .gambar {
+        display: none;
+    }
+
+    #cart h5,
+    #cart h4 {
+        font-size: 1.2rem;
+    }
+
+    #cart .menu-pesan button {
+        padding: 0;
+    }
+
+
+
+
+
+
+
+    /*====================================================*/
+
+    /* CHECKOUT */
+    #checkout .gambar {
+        display: none;
+    }
+
+    /*====================================================*/
+
+    /*====================================================*/
+
+    /* CHECKOUT */
+    #transaksi-page{
+        padding: 1.5rem;
+    }
+
+    /*====================================================*/
+}
+
+@media only screen and (max-width: 768px) {
+     /* DETAIL MENU */
+     #detail-menu {
+         padding: 1.5rem;
+     }
+
+     #detail-menu  #gambar-produk {
+        display: none;
+    }
+
+    #detail-menu #produk-lainnya .item h5{
+        font-size: 1rem;
+    }
+
+    /*====================================================*/
+}

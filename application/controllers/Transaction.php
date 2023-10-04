@@ -31,12 +31,21 @@ class Transaction extends MY_Controller {
 
     public function index()
     {
-    	// $this->load->view('transaction');
+		$id_session = $this->session->userdata('id_session');
+
+		$sql = "SELECT * FROM `checkout` WHERE id_session = $id_session";
+		$data['checkout'] = $this->ModelCatalog->getDataFromQuery($sql);
+
+		$sql = "SELECT * FROM `transaksi_midtrans` WHERE id_session = '".$this->session->userdata('id_session')."' ORDER BY transaction_time DESC";
+		$data['midtrans'] = $this->ModelCart->getDataFromQuery($sql);
+
     	$title = "Transaksi | Rendangku";
-		// $title = $this->session->userdata('id_session');
-		$sql = "SELECT * FROM `order` WHERE id_session = '".$this->session->userdata('id_session')."'";
-		$dataCatalog = $this->ModelCart->getDataFromQuery($sql);
-		$this->template($title, "transaksi", $dataCatalog);
+		
+		$data['title'] = $title;
+		$this->load->view('head', $data);
+		$this->load->view('navbar');
+		$this->load->view('transaksi', $data);
+		$this->load->view('footer');
     }
 
     public function process()

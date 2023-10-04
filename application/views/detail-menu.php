@@ -1,15 +1,17 @@
-<div id="detail-menu" class="container">
+<div id="detail-menu" class="container mb-5">
 	<div class="row">
-		<div id="gambar-tambahan" class="col col-lg-2">
+		<div id="gambar-tambahan" class="col-sm-12 col-md-2">
 			<?php
 				for($i=0; $i<2; $i++){
-					if($i==1){
-						$source = base_url()."assets/image/rendang_2.jpg";
+					$props = base_url()."assets/image/".$dataDetail['gambar'];
+					if($i==0){
+						$gambar = "assets/image/".$dataDetail['gambar'];
 					}else{
-						$source = base_url()."assets/image/rendang.jpg";
+						$gambar = "assets/image/".$dataDetail['gambar']."-2";
 					}
+					$source = base_url().$gambar.".jpg";
 					?>
-					<div id="gambarTambahan<?=$i?>" class="row mb-3" onmouseover="showImageHover(<?=$i?>)">
+					<div id="gambarTambahan<?=$i?>" class="row mb-3" onmouseover="showImageHover(<?=$i?>, '<?=$props?>')">
 						<img src="<?=$source?>">
 					</div>
 					<?php
@@ -17,16 +19,17 @@
 			?>
 			
 		</div>
-		<div id="gambar-produk" class="col col-lg-6">
-			<img class="w-100" src="<?=base_url('assets/image/rendang.jpg')?>">
+		<div id="gambar-produk" class="col-sm-12 col-md-6">
+			<?php $gambar = "assets/image/".$dataDetail['gambar'].".jpg";?>
+			<img class="w-100" src="<?=base_url($gambar)?>">
 		</div>
-		<div id="content" class="col col-lg-4">
+		<div id="content" class="col-sm-12 col-md-4">
 			<div class="row">
 				<h3><?=$dataDetail['nama_menu']?></h3>
 				<h4 class="my-3">Rp. <span id="dataDetailHarga"><?=$dataDetail['harga']?></span>,-</h4>
 			</div>
 			<form action="<?=site_url("addToCart")?>" method="POST">
-				<div class="order my-4">
+				<div class="order my-4 justify-content-between d-flex">
 
 					<div class=" cursor-pointer">
 						<i class="fa fa-minus btn btn-secondary" onclick="kurangOrder()" onchange="change()"></i>
@@ -54,18 +57,22 @@
 			</form>
 		</div>
 	</div>
-	<div id="deskripsi" class="row">
+	<div id="deskripsi">
+	    <h1 class="fw-bold d-inline-block pb-1 mb-5 border-bottom">Deskripsi</h1>
 		<?=$dataDetail['deskripsi']?>
 	</div>
 
 	<div id="produk-lainnya">
-		<h1>Menu Lainnya</h1>
+		<h1 class="mb-4">Menu Lainnya</h1>
 		<div class="d-flex justify-content-between">
 			<?php
 				foreach($dataMenuLain as $row){
 					?>
-						<div class="item card shadow p-3 mb-5 bg-body rounded">
-							<img src="<?=base_url('assets/image/rendang.jpg')?>" class="gambar-produk">
+						<div class="item card p-3 mb-5 bg-body rounded">
+							<?php
+								$gambar = "assets/image/".$row['gambar'].".jpg";
+							?>
+							<img src="<?=base_url($gambar)?>" class="gambar-produk">
 							<p>Rp. <?=$row['harga']?>,- </p>
 							<a href="<?=site_url('catalog/detail/'.$row['id_menu'].'')?>"><h5 onclick="detail()"><?=$row['nama_menu']?></h5></a>
 						</div>

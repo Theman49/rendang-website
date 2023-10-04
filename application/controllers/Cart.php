@@ -20,7 +20,7 @@ class Cart extends MY_Controller {
 
 		$insert = $this->ModelCart->updateCart($id_session, $id_menu, $jumlah_order, $total_harga);
 		if($insert){
-			echo $id_session." ".$id_menu." ".$jumlah_order." ".$total_harga." "."Sukses ".$insert;
+// 			echo $id_session." ".$id_menu." ".$jumlah_order." ".$total_harga." "."Sukses ".$insert;
 			redirect('cart');
 		}else{
 			echo "Gagal";
@@ -30,7 +30,7 @@ class Cart extends MY_Controller {
 	public function hapusDariCart($id_menu){
 		$hapus = $this->ModelCart->hapusDariCart($id_menu);
 		if($hapus){
-			echo $hapus." sukses";
+// 			echo $hapus." sukses";
 			redirect('cart');
 		}else{
 			echo "Gagal";

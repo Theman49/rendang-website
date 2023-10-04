@@ -154,6 +154,8 @@ class Snap extends CI_Controller {
     	// echo 'RESULT <br><pre>';
     	// var_dump($result);
     	// echo '</pre>' ;
+    	$time = time();
+    	$expireTime = time()+(3600 * 24); //expire 1 day
     	$nama = $this->input->post('nama_pembeli');
     	$data = array(
     		'order_id' => $result['order_id'],
@@ -161,16 +163,51 @@ class Snap extends CI_Controller {
     		'nama_pembeli' => $nama,
     		'gross_amount' => $result['gross_amount'],
     		'payment_type' => $result['payment_type'],
+			'status_code' => $result['status_code'],
     		'bank' => $result['va_numbers'][0]['bank'],
     		'va_number' => $result['va_numbers'][0]['va_number'],
-    		'transaction_time' => $result['transaction_time'],
+    		'transaction_time' => $time,
+    		'expire_time' => $expireTime,
     		'pdf_url' => $result['pdf_url'],
     	);
-    	$insert = $this->db->insert('order', $data);
-    	if($insert){
-    		echo "success";
-    	}else{
-    		echo "gagal";
-    	}
+
+		
+
+		$id_session = $this->session->userdata('id_session');
+		$sql = "SELECT * FROM cart WHERE id_session = $id_session";
+		$dataCart = $this->ModelCatalog->getDataFromQuery($sql);
+		$count = count($dataCart);
+		$cek = 0;
+		// insert to checkout table
+		foreach($dataCart as $row){
+			$dataItem = array(
+				'order_id' => $result['order_id'],
+				'id_session' => $id_session,
+				'id_menu' => $row['id_menu'],
+				'jumlah_order' => $row['jumlah_order'],
+				'total_harga' => $row['total_harga']
+			);
+			$insert = $this->db->insert('checkout', $dataItem);
+			if($insert){
+				$cek += 1;
+			}
+		}
+
+		// deleting from cart
+		$delete = $this->db->delete('cart', array('id_session'=>$id_session));
+
+		// insert to midtrans table
+		if($cek == $count){
+			$insert = $this->db->insert('transaksi_midtrans', $data);
+			if($insert){
+				redirect('transaction');
+			}else{
+				echo "gagal";
+			}
+		}
+
+
+
+    	
     }
 }

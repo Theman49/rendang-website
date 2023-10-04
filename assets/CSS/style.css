@@ -4,6 +4,10 @@
 	margin: 0;
 }
 
+html {
+	font-size: 87.5%;
+}
+
 a {
 	text-decoration: none;
 }
@@ -23,13 +27,14 @@ a {
 	justify-content: flex-end;
 }
 
+
 .testing {
-	height: 500px;
+	height: 50rem;
 	background-color: gray;
 }
 
 .space {
-	height: 100px;
+	height: 10rem;
 	background-image: linear-gradient(180deg, black, transparent);
 }
 
@@ -46,8 +51,18 @@ nav .container-fluid{
 	padding: 0;
 }
 
+nav .nav-item:not(:last-child) {
+	margin-right: 1.5rem;
+}
+
 nav .active {
-	font-weight: bold;
+	background-color: white;
+	border-radius: 5px;
+}
+
+.navbar .active > a.nav-link,
+.navbar .active > a.nav-link:hover {
+	color: rgb(33, 37, 41);
 }
 /*===================================================*/
 
@@ -120,22 +135,38 @@ nav .active {
 }
 
 #catalog #content .item {
-	width: 32%;
-	margin-bottom: 20px;
+	width: 47.5%;
+	margin-bottom: 5%;
+	color: rgb(33, 37, 41);
+	font-size: 1.5rem;
+}
+
+#catalog #content .item:hover {
+	transform: translateY(-1rem);
+
+	box-shadow: 0 .5rem 2rem rgba(233, 231, 231, 0.8);
+}
+
+#catalog #content .item:active {
+	transform: translateY(-.5rem);
+}
+
+#catalog #content .item:not(:nth-child(even)) {
+	margin-right: 5%;
 }
 
 #catalog #content .item .gambar-produk {
 	width: 100%;
 	height: auto;
-	margin-bottom: 10px;
+	margin-bottom: 1rem;
+}
+
+#catalog #content .item a {
+	text-decoration: none;
 }
 
 
-#catalog #content .item p,
-#catalog #content .item h5 {
-	margin: 0;
-	padding: 0;
-}
+
 /*====================================================*/
 
 
@@ -157,23 +188,45 @@ nav .active {
 }
 
 #detail-menu #deskripsi {
-	padding: 20px 0;
+	padding: 2.2rem 0;
+	font-size: 1.7rem;
+}
+
+#detail-menu #deskripsi pre {
+	white-space: pre-wrap;
+	line-height: 1;
 }
 
 #detail-menu #produk-lainnya > div{
 	display: flex;
 	justify-content: space-between;
+	color: rgb(33, 37, 41);
 }
 
 #detail-menu #produk-lainnya .item {
 	width: 22%;
-	margin-bottom: 20px;
+	margin-bottom: .2rem;
+}
+
+#detail-menu #produk-lainnya .item:hover {
+	transform: translateY(-.5rem);
+	box-shadow: 0 .5rem 2rem rgba(233, 231, 231, 0.8);
+}
+
+#detail-menu #produk-lainnya .item:active {
+	transform: translateY(0);
 }
 
 #detail-menu #produk-lainnya .item .gambar-produk {
 	width: 100%;
 	height: auto;
-	margin-bottom: 10px;
+	margin-bottom: .1rem;
+}
+
+#detail-menu #produk-lainnya .item p {
+	margin: 0;
+	margin-top: 2rem;
+	font-size: 1.3rem;
 }
 
 
@@ -200,6 +253,7 @@ nav .active {
 
 
 /* CART */
+
 #cart i:hover {
 	cursor: pointer;
 }
@@ -237,12 +291,12 @@ nav .active {
 }
 
 #checkout #accordionExample .logo-pengiriman {
-	width: 100px;
+	width: 10rem;
 }
 
 #checkout #accordionExample .logo-pengiriman,
 #checkout #pembayaran img {
-	width: 100px;
+	width: 10rem;
 }
 #checkout #accordionExample strong {
 	font-style: italic;
@@ -250,7 +304,7 @@ nav .active {
 
 #checkout #accordionExample label,
 #checkout #pembayaran label {
-	margin-left: 10px;
+	margin-left: 10rem;
 }
 
 #checkout .tarif p,
@@ -263,6 +317,10 @@ nav .active {
 
 
 
+/* TRANSAKSI-PAGE */
+#transaksi-page table td {
+	vertical-align: middle;
+}
 
 
 

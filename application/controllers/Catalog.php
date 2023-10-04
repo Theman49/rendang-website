@@ -4,14 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Catalog extends MY_Controller {
 	public function index()
 	{
-		if(!isset($_SESSION['id_session'])){
-			$this->session->set_userdata('id_session', time());
-		}
-
 		$dataCatalog = $this->ModelCatalog->getTable('catalog');
 		
 		$title = "Catalog | Rendangku";
-		$title = $this->session->userdata('id_session');
+		// $title = $this->session->userdata('id_session');
 		$this->template($title, "catalog", $dataCatalog);
 	}
 	public function detail($id)
@@ -53,10 +49,8 @@ class Catalog extends MY_Controller {
 		$sql = "SELECT * FROM cart WHERE id_session = '". $id_session . "' AND id_menu = " . $id_menu .";";
 		$select = $this->ModelCatalog->getDataFromQuery($sql);
 		if(count($select) != 0){
-			echo $select[0]['id_session'];
 			$this->update($data);
 		}else{
-			echo "0";
 			$this->insert($data);
 		}
 		
@@ -73,7 +67,7 @@ class Catalog extends MY_Controller {
 	public function insert($data){
 		$insert = $this->db->insert('cart', $data);
 		if($insert){
-			$script = "<script>alert('Success');window.location.href = \"catalog/detail/".$data['id_menu']."\"</script>";
+			$script = "<script>alert('Berhasil ditambahkan ke keranjang');window.location.href = \"catalog/detail/".$data['id_menu']."\"</script>";
 			echo $script;
 		}else{
 			echo "gagal";
@@ -83,7 +77,7 @@ class Catalog extends MY_Controller {
 	public function update($data){
 		$update = $this->ModelCart->updateCart($data['id_session'], $data['id_menu'], $data['jumlah_order'], $data['total_harga']);
 		if($update){
-			$script = "<script>alert('Success');window.location.href = \"catalog/detail/".$data['id_menu']."\"</script>";
+			$script = "<script>alert('Berhasil ditambahkan ke keranjang');window.location.href = \"catalog/detail/".$data['id_menu']."\"</script>";
 			echo $script;
 		}else{
 			echo "gagal";

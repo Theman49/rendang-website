@@ -10,9 +10,9 @@
 // if(isset($_POST['button'])){
 // 	$controller->hello();
 // }
-echo $nama_pembeli .$kota_pembeli. $alamat_pembeli .$kode_pos. $telepon;
-
-
+// echo $nama_pembeli .$kota_pembeli. $alamat_pembeli .$kode_pos. $telepon;
+echo time()+rand();
+$this->session->unset_userdata('id_session');
 ?>
 
 
